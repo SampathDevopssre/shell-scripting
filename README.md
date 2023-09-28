@@ -131,5 +131,5 @@ fi  -->
     d)  For angularjs components, let's create a function for angularjs and declare all the action in this and call it when you're using any angularjs components.
 
 ```
-    for
+    for testing
 ```
