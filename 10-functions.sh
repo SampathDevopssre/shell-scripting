@@ -46,4 +46,4 @@ stat() {
     hai 
 }
 
-hai
+stat
