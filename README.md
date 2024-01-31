@@ -1,135 +1,139 @@
 # Bash-Scripting
 
-```
-This resository contains all the basics needed to learn BASH SCRIPTING and the major goal is to automate the entire Configuration Management Procedure Involved as a part of the set-up.
-```
-
-### How to push the code to git hub ?
-
-On your VS Code, open the folder ( by using file option on your VSCode or code folderName on your terminal)
+``` Shell is native to linux and had better native advantage with better performance.
 
 ```
-    $ git add .                                     // This will let git know to start tracking all the files 
-    $ git commit -m "Updated the readMe file"
-    $ git push                                      // This will push the code to the repository on GitHub
-```
+There are 300+ flavors of Linux :
 
-### How to open a folder on VSCode with a command
+Kali Linux :  Majority ethical hacking ppl will use this Flavor
+Corporate : RedHat , CentOS ,  Ubuntu , Fedora , IBM AIX , HP_Unix , Cisco Unix ,OEL.
 
-```
-    $ code folderName
-```
-This is a repository created to publish all the Bash Bascis and project automation
+In Linux OS, there is no file-extensions. Extensions are given only for user understanding.
+Also, linux commands and files are case sensitive.
 
-*   This repo is created to share all the linux basics 
-*   Along with Linux Bash Syntax
-*   Then we will automate the infrastructure provisioning
-*   And then Configuration Management. 
+Linux Directory Structure :
+Unlike any operating system Linux also has its own directory structure and here in linux it starts with /
+/ -> Root Directory
 
+Types of files:
+    d - Directory   
+    - - Regular file 
+    l - Link
+    b - block devices
+    c - character files 
+    S - socket files 
+    p - Named pipe file 
 
-### Following are the shell scripting topics which we discuss as a part of our project
+Permissions:
 
-```
-1. SheBang Notation and Comments
-2. Printing
-3. Variables
-    - Local Variables.
-    - Environment Variables.
-    - Command Substitution.
-4. Inputs
-    - Special Variables
-    - Prompts
-5. Functions
-6. Redirectors & Quotes & Exit status 
-7. Conditions
-8. Loops
-9. Basis of SED Command
-10. Commands
+In linux, permissions are classifed to Read [ r and the value of it is 4 ] ,Write [ w and the value of it is 2 ] ,execute [ x and the value of it is 1 ] ,
 
-```
+ U:  4+2+1 = 7     [ Owner can read, write and execute the file ]
+  G:  4+2   = 6     [ Owner can read, write the file ]
+  O:  1     = 1     [ Other can just run the file ]
 
+Process Management
 
+Most useful commands to see the list of running process and their utliisations are :
+$ ps
+$ top
 
+ $ ps -ef                 [ Shows every process on the system using standard syntax]
+    $ ps -aux                [ Shows every process on the system using BSD syntax ]
+    $ top                    [ Top shows you dynamic result and refresh the result for 3 seconds ]
+    $ ps -U root -u root u   [ every process running as root (real & effective ID) ]
 
+Kill is a command which has the capability to kill any process and the parent process of your choice. Also kill has lot of signals to kill :
 
-```
-### Expressions are categorized in to three
-```
-    1. Numbers
-    2. Strings
-    3. Files
-```
+ Syntax: 
+        $ kill pID 
+        $ kill -9 pID  [ To delete a process forcefully ]
 
-Operators on numbers:
-```
-    -eq , -ne , -gt, -ge, -lt, -le
+Pipes : Pipes are used to send the output of one command to another command without storing the content anywhere physically on disk.
 
-    [ 1 -eq 1 ] 
-    [ 1 -ne 1 ]
-```
+Syntax :  com1 | com2
 
-Operators on Strings:
+Ex: cat /etc/passwd | grep root
 
+sudo
+sudo is a command in linux to give the temporary privileged access to the user
+Below commands shows how to switch between the users
 
-    = , == , !=
+$ sudo su -   [will be switched to the root user]
+# whoami      [shows you the output as root]
 
-    [ abc = abc ]
+By default, in centos apart from root and the centos user, none of the users will be having root access.
+Here is the file where we can add / enroll the users to gain sudo access
 
-    -z , -n 
+Service Management: Systemctl is the command to start,stop, restart , enable the service in centos 7.
 
-    [ -z "$var" ] -> This is true if var is not having any data
-    [ -n "$var" ] _> This is true if var is having any data
+# systemctl start serviceName
+    # systemctl stop service
+    # systemctl restart service
+    # systemctl enable service
 
-    -z and -n are inverse proportional options
+Network Management
 
+# curl ifconfig.co   [ shows you the public ip address of the server ]
+    # ip -a              [ shows you the private ip address of the server ] 
+    # netstat            [ shows the network statistics ]
+    # netstat -ln        [ shows the actual core information]
+    # netstat -tulpn     [ shows you the list of listening ports and the associated process running on it]
 
-Operators on files:
-    Lot of operators are available and you can check them using man pages of bash 
-
-    [ -f file ] -> True of file exists and file is a regular file 
-
-    [ -d xyz ]  -> True if file exists and it is a directory
-
-    ### Explore the file types, There are 7 types on files in Linux.
+`head`  : This prints the top 10 lines by default of the file
+`tail`  : This prints the last/bottom 10 lines by default of the file
 
 
-COMMENT
 
-ACTION=$1
- 
-if [ -z "$ACTION" ]; then 
-    echo Argument is needed, Either start/stop
-    
-else 
-    echo Thanks
-
-fi  -->
+$ cat /etc/sudoers   [ You can see the list of users with sudo access in the system ] 
 
 
 
 
-# In Bash Scripting, even if the instruction x-fails, it just goes with the execution of other commands in sequence.
-# That's the default behavior of BASH.
-# If you don't want the script to proceeding further in case of any failure, you can use "set -e" in the beginning of the script.
+
+Linux Command Standard Syntax:
+
+Command-name {options} {inputs}
+
+Options:
+    - <Single-Character>
+    -- <Single-Word>
+
+Standard Option to all the commands is --help
+    Ex: uname --help
+
+To check the vendor of the operating system.
+
+$ cat /etc/*release
+
+To check the CPU information
+
+$ cat /proc/cpuinfo
+
+To check the memory information
+
+$ cat /proc/meminfo
+
+To check the disk information
+
+$ fdisk -l   or    lsblk
+
+Get list of hidden files and directories.
+
+$ ls -A
+
+Get list of files with long format, usually shows properties of a file
+
+$ ls -l
 
 
 
+&&  :  Second command will be executed only if the first command is TRUE or a pass
 
-###  How to keep our Roboshop Project Automation Code DRY ?  How can we eliminate the repititive code  
+        ex : df -h && uptime             : First command is true, second command will be executed
+             df -asdfasf  && uptime      : first command is false, second command will not be executed
 
-1) Best Possible Approach is define functions and call them on whenever you need.
-2) The caviet here is, by default if you define a function inf x.sh , you can only call that function with in that file only.
-3) To over the above challenge, what we can do is, we can define functions in a common.sh file and call all the needed functions from the common file.
+||  :  Second command will only be executed if the first command is false or a failued
 
-```
-    a)  For nodejs components, let's create a function for nodejs and declare all the action in this and call it when you're using any nodejS   components.
-
-    b)  For python components, let's create a function for python and declare all the action in this and call it when you're using any python   components.
-
-    c)  For java components, let's create a function for java and declare all the action in this and call it when you're using any java components.
-
-    d)  For angularjs components, let's create a function for angularjs and declare all the action in this and call it when you're using any angularjs components.
-
-```
-    for testing
-```
+        ex : df -h || uptime             : First command is true, second command will not be executed
+             df -asdfasf  | uptime      : first command is false, second command will be executed
